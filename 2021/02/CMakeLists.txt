@@ -1,0 +1,7 @@
+cmake_minimum_required (VERSION 3.5)
+project(Day02 VERSION 1.0.2 LANGUAGES CXX)
+add_executable(02 02.cpp input)
+set(SESSION_COOKIE SESSIONCOOKIEHERE)
+set(DAY 2)
+add_custom_command(OUTPUT input COMMAND curl ARGS --cookie "session=${SESSION_COOKIE}" https://adventofcode.com/2021/day/${DAY}/input -o ${CMAKE_SOURCE_DIR}/input)
+add_custom_command(TARGET 02 POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/input ${CMAKE_CURRENT_BINARY_DIR}/input)
